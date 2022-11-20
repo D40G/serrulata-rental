@@ -156,13 +156,13 @@ CreateThread(function()
   end
 end)
 
-function RemoveZone()
+local function RemoveZone()
   exports['qb-target']:RemoveZone("box")
 end
 
 AddEventHandler('onResourceStart', function(resourceName) 
   if (GetCurrentResourceName() ~= resourceName) then
-    return
+    print('ss-rental Started')
   end
 end)
 
