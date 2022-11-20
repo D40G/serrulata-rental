@@ -10,6 +10,14 @@ Add the following code to your server.cfg/resouces.cfg
 ensure ss-rental
 ```
 
+# Preview 
+
+* Renting a vehicle:
+https://i.imgur.com/N2226TP.gif
+
+* Returning a Vehicle back to rental place:
+https://i.imgur.com/LqemFof.gif
+
 # Dependencies
 * [qb-menu](https://github.com/qbcore-framework/qb-menu)
 
@@ -35,3 +43,6 @@ ensure ss-rental
             $(".item-info-description").html('<p><strong>Plate: </strong><span>'+ itemData.info.label + '</span></p>');
 
 ```
+
+Looking for Support?: 
+[![](https://dcbadge.vercel.app/api/server/NerdvuJDX7)](https://discord.gg/NerdvuJDX7)
