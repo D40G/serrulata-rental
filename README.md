@@ -44,5 +44,4 @@ https://i.imgur.com/LqemFof.gif
 
 ```
 
-Looking for Support?: 
 [![](https://dcbadge.vercel.app/api/server/NerdvuJDX7)](https://discord.gg/NerdvuJDX7)
