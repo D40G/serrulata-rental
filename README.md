@@ -43,5 +43,5 @@ https://i.imgur.com/LqemFof.gif
             $(".item-info-description").html('<p><strong>Plate: </strong><span>'+ itemData.info.label + '</span></p>');
 
 ```
-
+# Discord
 [![](https://dcbadge.vercel.app/api/server/NerdvuJDX7)](https://discord.gg/NerdvuJDX7)
