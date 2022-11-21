@@ -1,4 +1,4 @@
-print("^2Serrulata-Studios ^7v^41^7.^40^7.^40 ^7- ^2SS-Rental^7")
+print("^2Serrulata-Studios ^7v^41^7.^40^7.^40 ^7- ^2Serrulata-Rental^7")
 
 Config = {}
 -- Add Multiple Vehicles 
