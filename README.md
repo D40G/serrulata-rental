@@ -7,7 +7,7 @@
 
 Add the following code to your server.cfg/resouces.cfg
 ```
-ensure ss-rental
+ensure serrulata-rental
 ```
 
 # Preview 
