@@ -1,7 +1,5 @@
-print("^2Serrulata-Studios ^7v^41^7.^40^7.^40 ^7- ^2Serrulata-Rental^7")
-
 Config = {}
--- Add Multiple Vehicles 
+
 Config.vehicleList = {
     { name = "Bison", model = "bison", price = 300 },
     { name = "Futo", model = "Futo", price = 250 },

@@ -1,6 +1,6 @@
 QBCore = exports['qb-core']:GetCoreObject()
 
-RegisterNetEvent("ss-rental:vehiclelist", function()
+RegisterNetEvent("Serrulata-rental:vehiclelist", function()
   for i = 1, #Config.vehicleList do
         	local MenuOptions = {
         		{
@@ -16,7 +16,7 @@ RegisterNetEvent("ss-rental:vehiclelist", function()
         			header = "<h8>"..v.name.."</h>",
               txt = "$"..v.price..".00",
         			params = {
-                event = "ss-rental:attemptvehiclespawn",
+                event = "Serrulata-rental:attemptvehiclespawn",
                 args = {
                   id = v.model,
                   price = v.price
@@ -28,32 +28,32 @@ RegisterNetEvent("ss-rental:vehiclelist", function()
       end
 end)
 
-RegisterNetEvent("ss-rental:attemptvehiclespawn", function(vehicle)
-  TriggerServerEvent("ss-rental:attemptPurchase",vehicle.id, vehicle.price)
+RegisterNetEvent("Serrulata-rental:attemptvehiclespawn", function(vehicle)
+  TriggerServerEvent("Serrulata-rental:attemptPurchase",vehicle.id, vehicle.price)
 end)
 
-RegisterNetEvent("ss-rental:attemptvehiclespawnfail", function()
+RegisterNetEvent("Serrulata-rental:attemptvehiclespawnfail", function()
   QBCore.Functions.Notify(Lang:t('error.nomoney'), "error")
 end)
 
-RegisterNetEvent("ss-rental:giverentalpaperClient", function(model, plate, name)
+RegisterNetEvent("Serrulata-rental:giverentalpaperClient", function(model, plate, name)
   local info = {
     data = "Model : "..tostring(model).." | Plate : "..tostring(plate)..""
   }
   TriggerServerEvent('QBCore:Server:AddItem', "rentalpapers", 1, info)
 end)
 
-RegisterNetEvent("ss-rental:returnvehicle", function()
+RegisterNetEvent("Serrulata-rental:returnvehicle", function()
   local car = GetVehiclePedIsIn(PlayerPedId(),true)
 
   if car ~= 0 then
     local plate = GetVehicleNumberPlateText(car)
     local vehname = string.lower(GetDisplayNameFromVehicleModel(GetEntityModel(car)))
     if string.find(tostring(plate), "LM2") then
-      QBCore.Functions.TriggerCallback('ss-rental:server:hasrentalpapers', function(HasItem)
+      QBCore.Functions.TriggerCallback('Serrulata-rental:server:hasrentalpapers', function(HasItem)
         if HasItem then
-          TriggerServerEvent('ss-rental:server:removepapers')
-          TriggerServerEvent('ss-rental:server:payreturn',vehname)
+          TriggerServerEvent('Serrulata-rental:server:removepapers')
+          TriggerServerEvent('Serrulata-rental:server:payreturn',vehname)
           DeleteVehicle(car)
           DeleteEntity(car)
         else
@@ -69,7 +69,7 @@ RegisterNetEvent("ss-rental:returnvehicle", function()
   end
 end)
 
-RegisterNetEvent("ss-rental:vehiclespawn", function(data, cb)
+RegisterNetEvent("Serrulata-rental:vehiclespawn", function(data, cb)
   local model = data
 
   local closestDist = 10000
@@ -101,7 +101,7 @@ RegisterNetEvent("ss-rental:vehiclespawn", function(data, cb)
   TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
 
   local plateText = GetVehicleNumberPlateText(veh)
-  TriggerServerEvent("ss-rental:giverentalpaperServer",model ,plateText)
+  TriggerServerEvent("Serrulata-rental:giverentalpaperServer",model ,plateText)
 
   local timeout = 10
   while not NetworkDoesEntityExistWithNetworkId(veh) and timeout > 0 do
@@ -141,12 +141,12 @@ CreateThread(function()
       }, {
           options = {
             {
-              event = "ss-rental:vehiclelist",
+              event = "Serrulata-rental:vehiclelist",
               icon = "fas fa-circle",
               label = "Rent vehicle",
             },
             {
-                event = "ss-rental:returnvehicle",
+                event = "Serrulata-rental:returnvehicle",
                 icon = "fas fa-circle",
                 label = "Return Vehicle (Receive Back 50% of original price)",
             },
@@ -156,19 +156,16 @@ CreateThread(function()
   end
 end)
 
-local function RemoveZone()
-  exports['qb-target']:RemoveZone("box")
-end
 
-AddEventHandler('onResourceStart', function(resourceName) 
-  if (GetCurrentResourceName() ~= resourceName) then
-    print('ss-rental Started')
-  end
+AddEventHandler('onResourceStart', function(resource)
+   if resource == GetCurrentResourceName() then
+    print("^2Serrulata-Studios ^7v^41^7.^40^7.^40 ^7- ^2Serrulata-Rental^7")
+   end
 end)
 
-AddEventHandler('onResourceStop', function(resourceName)
-  if (GetCurrentResourceName() ~= resourceName) then
-    RemoveBlip()
-    RemoveZone() 
-  end
+AddEventHandler('onResourceStop', function(resource)
+   if resource == GetCurrentResourceName() then
+      print('Serrulata-rental Stopped')
+      exports['qb-target']:RemoveZone("box")
+   end
 end)

@@ -1,21 +1,21 @@
 QBCore = exports['qb-core']:GetCoreObject()
 
-RegisterServerEvent('ss-rental:attemptPurchase')
-AddEventHandler('ss-rental:attemptPurchase', function(car,price)
+RegisterServerEvent('Serrulata-rental:attemptPurchase')
+AddEventHandler('Serrulata-rental:attemptPurchase', function(car,price)
 	local src = source
 	local Player = QBCore.Functions.GetPlayer(src)
     local cash = Player.PlayerData.money.cash
     if cash >= price then
         Player.Functions.RemoveMoney("cash",price,"rentals")
-        TriggerClientEvent('ss-rental:vehiclespawn', source, car)
+        TriggerClientEvent('Serrulata-rental:vehiclespawn', source, car)
         TriggerClientEvent('QBCore:Notify', src, car .. Lang:t('success.hasbeen') .. price .. '', "success")
     else
-        TriggerClientEvent('ss-rental:attemptvehiclespawnfail', source)
+        TriggerClientEvent('Serrulata-rental:attemptvehiclespawnfail', source)
     end
 end)
 
-RegisterServerEvent('ss-rental:giverentalpaperServer')
-AddEventHandler('ss-rental:giverentalpaperServer', function(model, plateText)
+RegisterServerEvent('Serrulata-rental:giverentalpaperServer')
+AddEventHandler('Serrulata-rental:giverentalpaperServer', function(model, plateText)
     local src = source
     local PlayerData = QBCore.Functions.GetPlayer(src)
     local info = {
@@ -25,8 +25,8 @@ AddEventHandler('ss-rental:giverentalpaperServer', function(model, plateText)
     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['rentalpapers'], "add")
 end)
 
-RegisterServerEvent('ss-rental:server:payreturn')
-AddEventHandler('ss-rental:server:payreturn', function(model)
+RegisterServerEvent('Serrulata-rental:server:payreturn')
+AddEventHandler('Serrulata-rental:server:payreturn', function(model)
     local src = source
     local Player = QBCore.Functions.GetPlayer(source)
     for k,v in pairs(Config.vehicleList) do 
@@ -38,7 +38,7 @@ AddEventHandler('ss-rental:server:payreturn', function(model)
     end
 end)
 
-RegisterNetEvent('ss-rental:server:removepapers', function()
+RegisterNetEvent('Serrulata-rental:server:removepapers', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     local ItemData = Player.Functions.GetItemByName("rentalpapers")
@@ -49,7 +49,7 @@ RegisterNetEvent('ss-rental:server:removepapers', function()
     end
 end)
 
-QBCore.Functions.CreateCallback('ss-rental:server:hasrentalpapers', function(source, cb)
+QBCore.Functions.CreateCallback('Serrulata-rental:server:hasrentalpapers', function(source, cb)
     local Player = QBCore.Functions.GetPlayer(source)
     local Item = Player.Functions.GetItemByName("rentalpapers")
     if Item ~= nil then

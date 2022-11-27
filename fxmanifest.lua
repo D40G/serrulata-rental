@@ -3,7 +3,7 @@ games { 'gta5' }
 
 author 'MoneSuper#0001'
 description 'Serrulata-Studios'
-repository 'https://github.com/Serrulata-Studios/ss-rental'
+repository 'https://github.com/Serrulata-Studios/Serrulata-rental'
 license 'GNU General Public License v3.0'
 version '1.0.0'
 
